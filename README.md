@@ -6,7 +6,9 @@ Enhance your LinkedIn messaging experience with AI-powered replies, providing qu
 
 ## Demo Video
 
-<video src="./demo.mp4" controls width="600"></video>
+[Demo Video](./demo.mp4)
+
+GOOGLE DRIVE LINK OF DEMO: https://drive.google.com/file/d/1WMejCk4ggQhBEi3x5_VMBuCfZ1bNOtnn/view?usp=sharing
 
 ## Tech Stack
 
