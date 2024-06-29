@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom"
+import { FaRedo } from "react-icons/fa"
+import { ImCross } from "react-icons/im"
+import { IoMdArrowDown } from "react-icons/io"
+import { MdKeyboardDoubleArrowRight } from "react-icons/md"
 
 import "./style.css"
 
@@ -21,11 +25,9 @@ const Modal = ({ onClose }) => {
     if (messageInput) {
       const staticText = "Thank you for your prompt!"
 
-      // Use document.execCommand to insert text
       messageInput.focus()
       document.execCommand("insertText", false, staticText)
 
-      // Dispatch an input event to notify LinkedIn of the change
       const event = new Event("input", { bubbles: true })
       messageInput.dispatchEvent(event)
       onClose()
@@ -34,7 +36,7 @@ const Modal = ({ onClose }) => {
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded shadow-lg w-[600px] relative z-60 max-h-96 overflow-y-auto">
+      <div className="bg-white p-10 shadow-lg w-[600px] relative z-60 max-h-96 overflow-y-auto rounded-md">
         {prompts.length === 0 ? (
           <>
             <input
@@ -42,17 +44,19 @@ const Modal = ({ onClose }) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Your prompt here"
-              className="w-full p-2 border rounded mb-4"
+              className="w-full p-4 border rounded-md-md mb-4"
             />
             <div className="flex justify-between items-center">
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700">
+                className="text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 border-2 border-gray-800 p-2">
+                <ImCross />
                 Close
               </button>
               <button
                 onClick={handleSubmit}
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 flex items-center justify-center gap-2">
+                <MdKeyboardDoubleArrowRight />
                 Generate
               </button>
             </div>
@@ -62,10 +66,10 @@ const Modal = ({ onClose }) => {
             {prompts.map((prompt, index) => (
               <div key={index} className="mb-4">
                 <div className="flex justify-end">
-                  <div className="bg-gray-200 p-2 rounded">{prompt}</div>
+                  <div className="bg-gray-200 p-2 rounded-md">{prompt}</div>
                 </div>
                 <div className="flex justify-start">
-                  <div className="bg-blue-200 p-2 rounded">
+                  <div className="bg-blue-200 p-2 rounded-md">
                     Thank you for your prompt!
                   </div>
                 </div>
@@ -76,23 +80,26 @@ const Modal = ({ onClose }) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Your prompt here"
-              className="w-full p-2 border rounded mb-4"
+              className="w-full p-2 border rounded-md mb-4"
             />
             <div className="flex justify-between items-center">
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700">
+                className="text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 border-2 border-gray-800 p-2">
+                <ImCross />
                 Close
               </button>
               <div className="flex space-x-2">
                 <button
                   onClick={handleInsert}
-                  className="text-blue-500 p-2 rounded hover:text-blue-700">
+                  className="text-blue-500 p-2 rounded-md hover:text-blue-700 flex items-center justify-center gap-2">
+                  <IoMdArrowDown />
                   Insert
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                  className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 flex items-center justify-between gap-2">
+                  <FaRedo />
                   Regenerate
                 </button>
               </div>
